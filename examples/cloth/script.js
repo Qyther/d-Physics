@@ -22,21 +22,39 @@ window.onload=setTimeout(()=>{
 
     var mdown=false;
     var mmove=[-1,-1];
-    document.addEventListener("mousemove",e=>{
-        if(mdown)
+    if(!("ontouchstart" in document)) {
+        document.addEventListener("mousemove",e=>{
+            if(mdown)
+                mmove=[e.clientX,e.clientY];
+        });
+        document.addEventListener("mousedown",e=>{
+            box.handleTouchStart(e.clientX,e.clientY,30);
+            if(e.button===1) des=true;
+            mdown=true;
             mmove=[e.clientX,e.clientY];
-    });
-    document.addEventListener("mousedown",e=>{
-        box.handleTouchStart(e.clientX,e.clientY,30);
-        if(e.button===1) des=true;
-        mdown=true;
-        mmove=[e.clientX,e.clientY];
-    });
-    document.addEventListener("mouseup",()=>{
-        mdown=false;
-        des=false;
-        box.handleTouchEnd();
-    });
+        });
+        document.addEventListener("mouseup",()=>{
+            mdown=false;
+            des=false;
+            box.handleTouchEnd();
+        });
+    } else {
+        document.addEventListener("touchmove",e=>{
+            if(e.changedTouches) e=e.changedTouches[0];
+            if(mdown)
+                mmove=[e.clientX,e.clientY];
+        });
+        document.addEventListener("touchstart",e=>{
+            if(e.changedTouches) e=e.changedTouches[0];
+            box.handleTouchStart(e.clientX,e.clientY,30);
+            mdown=true;
+            mmove=[e.clientX,e.clientY];
+        });
+        document.addEventListener("touchend",()=>{
+            mdown=false;
+            box.handleTouchEnd();
+        });
+    }
     var last;
     var des;
     function frame() {
