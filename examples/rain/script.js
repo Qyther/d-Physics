@@ -1,23 +1,12 @@
 log=a=>console.log(JSON.stringify(a));
 window.onload=setTimeout(()=>{
 
-    var box=new DManager(10);
-    var cw=14;
-    var ch=10;
-    var csw=30;
-    var csh=30;
-    for(var y=0;y<ch;y++) {
-        for(var x=0;x<cw;x++) {
-            box.addPoint(x*csw+(innerWidth/2-csw*cw/2),y*csh+60,0,0,y===0&&true);
-        }
+    var box=new DManager(24);
+    for(var i=0;i<200;i++) {
+        box.addPoint(Math.random()*w,Math.random()*h);
     }
-    for(var y=0;y<ch;y++) {
-        for(var x=0;x<cw;x++) {
-            if(x+y*cw<cw*ch&&(x%(cw-1)>0||x===0))
-                box.addLine(x+y*cw,x+y*cw+1);
-            if(x+y*cw<cw*ch&&(y%(ch-1)>0||y===0))
-                box.addLine(x+y*cw,x+y*cw+cw);
-        }
+    for(var i=0;i<box.poin.length;i++) {
+        box.poin[i].colr="turquoise";
     }
 
     var mdown=false;
@@ -82,15 +71,12 @@ window.onload=setTimeout(()=>{
             if(des) box.removePoint(ha[0]);
         }
     }
-    for(var i=0;i<box.line.length;i++) {
-        var cli=box.line[i];
-        if(Math.hypot(cli.firsPoin.posi[0]-cli.secoPoin.posi[0],cli.firsPoin.posi[1]-cli.secoPoin.posi[1])>200) {
-            box.removeLine(cli);
-        }
-    }
     box.render(ctx);
     ctx.fillStyle="white";
     ctx.fillText((1000/delta).toFixed(1)+"FPS",0,10);
+    for(var i=0;i<box.poin.length;i++) {
+        if(box.poin[i].posi[1]>=innerHeight/100*99) box.poin[i].posi[1]=0;
+    }
     ctx.globalAlpha=.7;
     ctx.drawImage(logo,innerWidth-96,innerHeight-96,96,96);
     last=now;

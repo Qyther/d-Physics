@@ -112,6 +112,8 @@ window.onload=setTimeout(()=>{
     }
     var last;
     var des;
+    var logo=new Image();
+    logo.src="https://raw.githubusercontent.com/Qyther/d-Physics/master/logotransparent.png";
     function frame() {
     var c=document.querySelector("canvas");
     w=c.width=innerWidth;
@@ -138,6 +140,8 @@ window.onload=setTimeout(()=>{
     box.render(ctx);
     ctx.fillStyle="white";
     ctx.fillText((1000/delta).toFixed(1)+"FPS",0,10);
+    ctx.globalAlpha=.7;
+    ctx.drawImage(logo,innerWidth-96,innerHeight-96,96,96);
     last=now;
     }
     setInterval(frame,1000/60);
