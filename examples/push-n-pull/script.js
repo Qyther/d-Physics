@@ -9,11 +9,11 @@ window.onload=setTimeout(()=>{
 
     for(var i=0;i<box.line.length;i++) {
         box.line[i].stif=2;
-        box.line[i].colr="dodgerblue";
+        box.line[i].colr="#187cde";
     }
     for(var i=0;i<box.poin.length;i++) {
         box.poin[i].grav=[0,0];
-        box.poin[i].colr="aqua";
+        box.poin[i].colr="#298def";
     }
 
 
@@ -32,7 +32,7 @@ window.onload=setTimeout(()=>{
     var now=Date.now();
     if(!last) last=now;
     var delta=now-last;
-    ctx.strokeStyle="white";
+    ctx.strokeStyle="#222";
     ctx.beginPath();
     ctx.arc(innerWidth/2,160,120,0,2*Math.PI);
     ctx.stroke();
@@ -55,8 +55,9 @@ window.onload=setTimeout(()=>{
 
     box.handle();
     box.render(ctx);
-    ctx.fillStyle="white";
-    ctx.fillText((1000/delta).toFixed(1)+"FPS",0,10);
+    ctx.fillStyle="#187cde";
+    ctx.font="20px forma";
+    ctx.fillText((1000/delta).toFixed(1)+"FPS",0,16);
     ctx.globalAlpha=.7;
     ctx.drawImage(logo,innerWidth-96,innerHeight-96,96,96);
     last=now;

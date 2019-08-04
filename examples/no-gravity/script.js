@@ -54,10 +54,10 @@ window.onload=setTimeout(()=>{
     box.addLine(17,19);
 
     for(var i=0;i<box.line.length;i++) {
-        box.line[i].colr="dodgerblue";
+        box.line[i].colr="#187cde";
     }
     for(var i=0;i<box.poin.length;i++) {
-        box.poin[i].colr="aqua";
+        box.poin[i].colr="#298def";
     }
 
     for(var i=0;i<100;i++) {
@@ -70,9 +70,13 @@ window.onload=setTimeout(()=>{
     
     for(var i=0;i<box.line.length;i++) {
         box.line[i].stif=.1;
+        if(box.line[i].colr==="#eee")
+            box.line[i].colr="#222";
     }
     for(var i=0;i<box.poin.length;i++) {
         box.poin[i].grav=[0,0];
+        if(box.poin[i].colr==="#ddd")
+            box.poin[i].colr="#333";
     }
 
     var mdown=false;
@@ -128,7 +132,7 @@ window.onload=setTimeout(()=>{
         var ha=box.handleTouch(mmove[0],mmove[1],30);
         if(ha.length>0) {
             ctx.beginPath();
-            ctx.strokeStyle="white";
+            ctx.strokeStyle="#222";
             ctx.arc(ha[0].posi[0],ha[0].posi[1],30,0,2*Math.PI);
             ha[0].posi[0]=mmove[0];
             ha[0].posi[1]=mmove[1];
@@ -138,8 +142,9 @@ window.onload=setTimeout(()=>{
         }
     }
     box.render(ctx);
-    ctx.fillStyle="white";
-    ctx.fillText((1000/delta).toFixed(1)+"FPS",0,10);
+    ctx.fillStyle="#187cde";
+    ctx.font="20px forma";
+    ctx.fillText((1000/delta).toFixed(1)+"FPS",0,16);
     ctx.globalAlpha=.7;
     ctx.drawImage(logo,innerWidth-96,innerHeight-96,96,96);
     last=now;

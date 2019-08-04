@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "forma";
+  src: url("https://raw.githubusercontent.com/Qyther/FormaFont/master/forma-webfont.woff2") format("woff2"),
+  url("https://raw.githubusercontent.com/Qyther/FormaFont/master/forma-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 canvas {
     position: fixed;
     left: 0;
     top: 0;
-    background: #222;
+    background: #DFDFB8;
   }
